@@ -31,13 +31,13 @@ class M_user extends CI_Model
 
     public function hapus($id)
     {
-        $this->db->delete('admin', ['id' => $id]);
+        $this->db->delete('user', ['id' => $id]);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
 
     public function getUserId($id)
     {
-        $hasil = $this->db->get_where('admin', ['id' => $id]);
+        $hasil = $this->db->get_where('user', ['id' => $id]);
         return $hasil->row_array();
     }
 }
