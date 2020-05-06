@@ -101,7 +101,7 @@ class Main extends CI_Controller
             $this->load->view('part/footer');
         } else { {
                 $data = [
-                    'kode' => $this->input->post('id'),
+                    'kode_obat_obat' => $this->input->post('id'),
                     'nama' => $this->input->post('nama_obat'),
                     'id_suplier' => $this->input->post('suplier'),
                     'produsen' => $this->input->post('produsen'),

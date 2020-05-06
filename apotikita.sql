@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `obat` (
-  `kode` int(5) NOT NULL,
+  `kode_obat` int(5) NOT NULL,
   `nama` varchar(32) NOT NULL,
   `id_suplier` varchar(32) NOT NULL,
   `produsen` varchar(32) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `obat` (
 -- Dumping data untuk tabel `obat`
 --
 
-INSERT INTO `obat` (`kode`, `nama`, `id_suplier`, `produsen`, `harga`, `qty`) VALUES
+INSERT INTO `obat` (`kode_obat`, `nama`, `id_suplier`, `produsen`, `harga`, `qty`) VALUES
 (1, 'betadi', '2', 'asd', 20000, 2),
 (2, 'ampetamine', 'Pilih', 'awu', 120000, 3),
 (4, 'Ampetamine', '1', 'Aque', 20000, 4);
@@ -95,7 +95,7 @@ INSERT INTO `user` (`id`, `nama`, `username`, `password`) VALUES
 -- Indeks untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  ADD PRIMARY KEY (`kode`);
+  ADD PRIMARY KEY (`kode_obat`);
 
 --
 -- Indeks untuk tabel `suplier`
@@ -117,7 +117,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `kode` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kode_obat` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `suplier`

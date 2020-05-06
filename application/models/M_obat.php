@@ -20,19 +20,19 @@ class M_obat extends CI_Model
 
     public function update($data)
     {
-        $this->db->update('obat', $data, ['kode' => $data['kode']]);
+        $this->db->update('obat', $data, ['kode_obat' => $data['kode_obat']]);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
 
     public function hapus($id)
     {
-        $this->db->delete('obat', ['kode' => $id]);
+        $this->db->delete('obat', ['kode_obat' => $id]);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
 
     public function getObatId($id)
     {
-        $hasil = $this->db->get_where('obat', ['kode' => $id]);
+        $hasil = $this->db->get_where('obat', ['kode_obat' => $id]);
         return $hasil->row_array();
     }
 }

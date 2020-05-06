@@ -85,6 +85,15 @@
                         <a class="dropdown-item" href="<?= base_url('main/tambahAdmin') ?>">TAMBAH ADMIN</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        TRANSAKSI
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<?= base_url('main/datatransaksi') ?>">DATA TRANSAKSI</a>
+                        <a class="dropdown-item" href="<?= base_url('main/tambahtransaksi') ?>">TAMBAH TRANSAKSI</a>
+                    </div>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="<?= base_url('main/logout') ?>">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>

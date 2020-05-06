@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <div class="row mr-4">
         <div class="col-9 pt-5 pl-5">
-            <h3>Data Obat</h3>
+            <h3>Data Transaksi</h3>
         </div>
         <?= $this->session->flashdata('pesan');
         ?>
     </div>
     <div class="row">
         <div class="col-12 py-3 px-5">
-            <?php if ($obat) { ?>
+            <?php if ($tr) { ?>
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
@@ -24,7 +24,7 @@
                     <tbody>
                         <?php
                         $i = 1;
-                        foreach ($obat as $row) { ?>
+                        foreach ($tr as $row) { ?>
                             <tr>
                                 <th><?= $i ?></th>
                                 <td><?= $row['nama'] ?></td>
@@ -43,7 +43,7 @@
                     </tbody>
                 </table>
             <?php } else {
-                echo "<h4>Data obat kosong</h4>";
+                echo "<h4>Data transaksi kosong</h4>";
             } ?>
         </div>
     </div>

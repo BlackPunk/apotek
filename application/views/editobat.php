@@ -3,8 +3,8 @@
         <div class="col-12 py-5">
             <?= $this->session->flashdata('pesan');
             ?>
-            <form method="post" action="<?= base_url('main/editobat/') . $obat['kode'] ?>">
-                <input type="hidden" class="form-control" name="id" value="<?= $obat['kode'] ?>" required>
+            <form method="post" action="<?= base_url('main/editobat/') . $obat['kode_obat'] ?>">
+                <input type="hidden" class="form-control" name="id" value="<?= $obat['kode_obat'] ?>" required>
                 <div class="form-group">
                     <label for="suplier">Suplier</label>
                     <select class="form-control" name="suplier" required>
