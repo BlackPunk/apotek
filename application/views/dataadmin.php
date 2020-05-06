@@ -29,8 +29,8 @@
                                 <td><?= $row['username'] ?></td>
                                 <td><?= $row['password'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('main/editsuplier/') . $row['id'] ?>"><button type="button" class="btn btn-sm btn-outline-success"><i class="far fa-user-cog"></i></button></a>
-                                    <a href="<?= base_url('main/hapussuplier/') . $row['id'] ?>"><button type="button" class="btn btn-sm btn-outline-success"><i class="far fa-trash"></i></button></a>
+                                    <a href="<?= base_url('main/editadmin/') . $row['id'] ?>"><button type="button" class="btn btn-sm btn-outline-success"><i class="far fa-user-cog"></i></button></a>
+                                    <a href="<?= base_url('main/hapusadmin/') . $row['id'] ?>"><button type="button" class="btn btn-sm btn-outline-success"><i class="far fa-trash"></i></button></a>
                                 </td>
                             </tr>
                         <?php $i++;

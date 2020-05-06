@@ -290,6 +290,65 @@ class Main extends CI_Controller
         }
     }
 
+    public function editAdmin($id)
+    {
+        $this->form_validation->set_rules('name', 'Nama Admin', 'trim|required');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['admin'] = $this->M_user->getUserId($id);
+            $this->load->view('part/header');
+            $this->load->view('editadmin', $data);
+            $this->load->view('part/footer');
+        } else {
+            $data = [
+                'id' => $this->input->post('id'),
+                'nama' => $this->input->post('name'),
+                'username' => $this->input->post('username'),
+                'password' => $this->input->post('password'),
+            ];
+            if ($this->M_user->update($data)) {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show col-3 mt-5 text-center" role="alert">
+                Data Admin berhasil di update.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+                redirect('main/dataadmin');
+            } else {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                Tidak ada data yang berubah.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+                redirect('main/editadmin/' . $id, 'refresh');
+            }
+        }
+    }
+
+    public function hapusadmin($id)
+    {
+        if ($this->M_user->hapus($id)) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show col-3 mt-5 text-center" role="alert">
+                Data Admin berhasil di hapus.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+            redirect('main/dataadmin', 'refresh');
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show col-3 mt-5 text-center" role="alert">
+                Hapus gagal
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+            redirect('main/dataadmin', 'refresh');
+        }
+    }
+
     public function logout()
     {
         session_destroy();

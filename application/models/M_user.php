@@ -22,4 +22,22 @@ class M_user extends CI_Model
         $this->db->insert('user', $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
+
+    public function update($data)
+    {
+        $this->db->update('user', $data, ['id' => $data['id']]);
+        return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+    }
+
+    public function hapus($id)
+    {
+        $this->db->delete('admin', ['id' => $id]);
+        return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+    }
+
+    public function getUserId($id)
+    {
+        $hasil = $this->db->get_where('admin', ['id' => $id]);
+        return $hasil->row_array();
+    }
 }

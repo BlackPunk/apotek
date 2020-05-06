@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Bulan Mei 2020 pada 19.41
+-- Waktu pembuatan: 07 Bulan Mei 2020 pada 00.23
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.3.8
 
@@ -37,6 +37,15 @@ CREATE TABLE `obat` (
   `qty` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `obat`
+--
+
+INSERT INTO `obat` (`kode`, `nama`, `id_suplier`, `produsen`, `harga`, `qty`) VALUES
+(1, 'betadi', '2', 'asd', 20000, 2),
+(2, 'ampetamine', 'Pilih', 'awu', 120000, 3),
+(4, 'Ampetamine', '1', 'Aque', 20000, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -45,7 +54,7 @@ CREATE TABLE `obat` (
 
 CREATE TABLE `suplier` (
   `id_suplier` int(5) NOT NULL,
-  `nama` varchar(32) NOT NULL,
+  `nama_suplier` varchar(32) NOT NULL,
   `alamat` varchar(64) NOT NULL,
   `kota` varchar(32) NOT NULL,
   `nohp` varchar(20) NOT NULL
@@ -55,9 +64,8 @@ CREATE TABLE `suplier` (
 -- Dumping data untuk tabel `suplier`
 --
 
-INSERT INTO `suplier` (`id_suplier`, `nama`, `alamat`, `kota`, `nohp`) VALUES
-(1, 'jhon', 'bogor', 'Bogor', '085813238669'),
-(2, 'bele', 'bogor', 'Northbrook', '7172822593');
+INSERT INTO `suplier` (`id_suplier`, `nama_suplier`, `alamat`, `kota`, `nohp`) VALUES
+(1, 'jhon', 'bogor', 'Bogor', '085813238669');
 
 -- --------------------------------------------------------
 
@@ -109,7 +117,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `kode` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `kode` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `suplier`
