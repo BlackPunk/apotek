@@ -12,6 +12,7 @@ class Main extends CI_Controller
         $this->load->model('M_user');
         $this->load->model('M_obat');
         $this->load->model('M_suplier');
+        $this->load->model('M_transaksi');
     }
 
     public function index()
@@ -346,6 +347,81 @@ class Main extends CI_Controller
                 </button>
             </div>');
             redirect('main/dataadmin', 'refresh');
+        }
+    }
+
+    public function datatransaksi()
+    {
+        $data['tr'] = $this->M_transaksi->getTransaksi();
+
+        $i = 0;
+        foreach ($data['tr'] as $d) {
+            $obat = json_decode($d['obat']);
+            $j = 0;
+            $harga[] = [];
+            foreach ($obat as $o) {
+                $obat = $this->M_obat->getObatId($o);
+                $qty = json_decode($d['jumlah_obat'])[$j];
+                $harga[$j] = $obat['harga'] * $qty;
+                $j++;
+            }
+            $data['total'][$i] = array_sum($harga);
+            $i++;
+        }
+        $this->load->view('part/header');
+        $this->load->view('datatransaksi', $data);
+        $this->load->view('part/footer');
+    }
+
+    public function tambahtransaksi()
+    {
+        $this->form_validation->set_rules('nama_pembeli', 'Nama Pembeli', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['obat'] = $this->M_obat->getObat();
+            $this->load->view('part/header');
+            $this->load->view('tambahtransaksi', $data);
+            $this->load->view('part/footer');
+        } else {
+            $data = [
+                'tgl' => date('d-m-Y'),
+                'nama_pembeli' => $this->input->post('nama_pembeli'),
+                'obat' => json_encode($this->input->post('obat[]')),
+                'jumlah_obat' => json_encode($this->input->post('jml_obat[]'))
+            ];
+            $jum_obat = json_decode($data['jumlah_obat']);
+            $i = 0;
+            foreach (json_decode($data['obat']) as $d) {
+                $obat = $this->M_obat->getObatId($d);
+                if ($obat['qty'] < $jum_obat[$i]) {
+                    $error[$i] = 'Stok Obat ' . $obat['nama'] . ' tidak cukup';
+                } else {
+                    $this->M_obat->updateqty($d, $obat['qty'] - $jum_obat[$i]);
+                }
+            }
+            if (!$error) {
+                foreach (json_decode($data['obat']) as $d) {
+                    $obat = $this->M_obat->getObatId($d);
+                    $this->M_obat->updateqty($d, $obat['qty'] - $jum_obat[$i]);
+                }
+            } else {
+                $this->session->set_flashdata('error', $error);
+
+                redirect('main/tambahtransaksi', 'refresh');
+            }
+
+            if ($this->M_transaksi->tambah($data)) {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show col-3 mt-5 text-center" role="alert">
+                Data Transaksi berhasil di tambahkan.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+                // die("berhasil");
+                redirect('main/datatransaksi');
+            } else {
+                echo 'query gagal';
+            }
         }
     }
 

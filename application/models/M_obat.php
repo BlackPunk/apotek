@@ -35,4 +35,9 @@ class M_obat extends CI_Model
         $hasil = $this->db->get_where('obat', ['kode_obat' => $id]);
         return $hasil->row_array();
     }
+
+    public function updateqty($id, $qty)
+    {
+        $this->db->update('obat', ['qty' => $qty], ['kode_obat' => $id]);
+    }
 }

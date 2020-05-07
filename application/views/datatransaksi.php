@@ -13,29 +13,20 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Obat</th>
-                            <th>Suplier</th>
-                            <th>produsen</th>
-                            <th>harga</th>
-                            <th>Jumlah Stok</th>
-                            <th>Opsi</th>
+                            <th>Tanggal</th>
+                            <th>Nama Pembeli</th>
+                            <th>Total Harga</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $i = 1;
+                        $i = 0;
                         foreach ($tr as $row) { ?>
                             <tr>
-                                <th><?= $i ?></th>
-                                <td><?= $row['nama'] ?></td>
-                                <td><?= $row['nama_suplier'] ?></td>
-                                <td><?= $row['produsen'] ?></td>
-                                <td><?= $row['harga'] ?></td>
-                                <td><?= $row['qty'] ?></td>
-                                <td>
-                                    <a href="<?= base_url('main/editobat/') . $row['kode_obat'] ?>"><button type="button" class="btn btn-sm btn-outline-success"><i class="far fa-user-cog"></i></button></a>
-                                    <a href="<?= base_url('main/hapusobat/') . $row['kode_obat'] ?>"><button type="button" class="btn btn-sm btn-outline-success"><i class="far fa-trash"></i></button></a>
-                                </td>
+                                <th><?= $i + 1 ?></th>
+                                <td><?= $row['tgl'] ?></td>
+                                <td><?= $row['nama_pembeli'] ?></td>
+                                <td>Rp. <?= $total[$i] ?></td>
                             </tr>
                         <?php $i++;
                         } ?>
